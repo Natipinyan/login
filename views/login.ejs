@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>login page</title>
+    <style>
+        body{background-color: #c5acf9;}
+    </style>
+</head>
+<body>
+
+<main>
+    <header>
+
+    </header>
+
+        <input type="text" id="userName" placeholder="enter your name">
+        <input type="password" id="password" placeholder="enter your password">
+        <button onclick="chek()" >vgyhbjnk</button>
+
+
+
+    <footer>
+
+    </footer>
+
+</main>
+
+
+
+<script>
+    async function chek(){
+        let data = {};
+
+        let userName = document.getElementById("userName").value;
+        let pass = document.getElementById("password").value;
+
+        data = {user:userName,pass:pass};
+        console.log(pass);
+        console.log(userName);
+        let response = await fetch('/login/chek', {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }
+        );
+        if (response.ok) {
+            let res = await response.json();
+            console.log("ok")
+        } else {
+            console.error('Error');
+        }
+    }
+
+
+
+</script>
+</body>
+
+</html>
