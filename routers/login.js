@@ -8,10 +8,9 @@ router.get("/",(req, res) => {
     res.render("login", {pageTitle:"בוקר טוב"});
 
 });
-router.patch("/chek",[middle.check_login],function (req,res,next){
-    // return res.send(res.loggedEn);
+router.post("/chek",[middle.check_login],function (req,res,next){
     if(res.loggedEn) {
-        res.status(500).json({message: "ok"})
+        res.render("pageOne", {pageTitle:"בוקר טוב"});
     } else {
-        res.status(500).json({message: "err"})    }
+        res.render("login", {pageTitle:"בוקר טוב"}); }
 });

@@ -8,16 +8,18 @@ async function check_login(req,res,next){
         await CheckUser(req, res);
         if (res.loggedEn) {
            console.log("ok");
+            res.loggedEn = true;
         } else {
         res.loggedEn=false;
             console.log("err");
+            res.loggedEn = false;
     }
     next();
 }
 async function CheckUser(req,res){
+    let uname = req.body.userName;
+    let password = EncWithSalt(req.body.password);
 
-    let uname = req.body.user;
-    let password = EncWithSalt(req.body.pass);
     res.loggedEn=false;
 
     let Query = `SELECT * FROM \`users\` WHERE userName='${uname}' AND pass='${password}' `;

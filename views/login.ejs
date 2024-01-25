@@ -17,9 +17,12 @@
 
     </header>
 
-        <input type="text" id="userName" placeholder="enter your name">
-        <input type="password" id="password" placeholder="enter your password">
-        <button onclick="chek()" >vgyhbjnk</button>
+    <form method="post" action="/login/chek" >
+        <input type="text" name="userName" placeholder="enter your name">
+        <input type="password" name="password" placeholder="enter your password">
+        <input type="submit" >
+    </form>
+
 
 
 
@@ -31,35 +34,9 @@
 
 
 
-<script>
-    async function chek(){
-        let data = {};
-
-        let userName = document.getElementById("userName").value;
-        let pass = document.getElementById("password").value;
-
-        data = {user:userName,pass:pass};
-        console.log(pass);
-        console.log(userName);
-        let response = await fetch('/login/chek', {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            }
-        );
-        if (response.ok) {
-            let res = await response.json();
-            console.log("ok")
-        } else {
-            console.error('Error');
-        }
-    }
 
 
 
-</script>
 </body>
 
 </html>
