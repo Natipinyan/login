@@ -7,7 +7,7 @@ const middle=require("../middleware/middleWareLogin");
 
 router.get("/",(req, res) => {
     res.status(500).json({message:"bhejkad csxz"});
-    //res.render("login", {pageTitle:"בוקר טוב"});
+
 
 });
 
