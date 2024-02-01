@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>login page</title>
+    <title>register page</title>
     <style>
         body{background-color: green;}
     </style>
@@ -13,11 +13,14 @@
 <body>
 
 <main>
+
     <center>
-        <h1>login page</h1>
-        <form method="post" action="/login/chek" >
-            <input type="text" name="userName" placeholder="enter your name">
-            <input type="password" name="password" placeholder="enter your password">
+        <h1>register page</h1>
+        <form method="post" action="/register/Add" >
+            <input type="text" name="name" placeholder="enter your name">
+            <input type="text" name="userName" placeholder="enter your user name">
+            <input type="email" name="email" placeholder="enter your email">
+            <input type="password" name="pass" placeholder="enter your password">
             <input type="submit" >
         </form>
     </center>

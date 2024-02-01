@@ -11,7 +11,6 @@ const opts = {
     duration: 3*60, // Per 3 minutes
 };
 
-
 const rateLimiter = new RateLimiterMemory(opts);
 function EncWithSalt(str){
     return md5(Salt+str);
@@ -84,13 +83,13 @@ function isLogged(req,res,next){
     if (token) {
         jwt.verify(token, jwtSecret, (err, decodedToken) => {
             if (err) {
-                return res.redirect("login")
+                return res.redirect("/login")
             } else {
                 next()
             }
         })
     } else {
-        return res.redirect("login")
+        return res.redirect("/login")
     }
     next();
 }

@@ -5,6 +5,5 @@ module.exports = router;
 const middle=require("../middleware/middleWareLogin");
 
 router.get("/",(req, res) => {
-    res.render("pageTo", {pageTitle:"בוקר טוב"});
-
+    res.render("cookiesTest", {pageTitle:"cookies work"});
 });

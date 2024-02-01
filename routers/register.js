@@ -6,9 +6,7 @@ module.exports = router;
 const middle=require("../middleware/middleWareLogin");
 
 router.get("/",(req, res) => {
-    res.status(500).json({message:"bhejkad csxz"});
-
-
+    res.render("registerPage", {pageTitle:"registerPage"});
 });
 
 router.post("/List",(req, res) => {
@@ -36,8 +34,9 @@ router.post("/Add",(req, res) => {
     db_pool.query(Query, function (err, rows, fields) {
         if (err) {
             res.status(500).json({message: err})
+        }else{
+            return res.render("regSuccessful")
         }
-        res.status(200).json({message: 500});
     });
 });
 
@@ -52,7 +51,7 @@ router.post("/Update",(req, res) => {
         if(err){
             res.status(500).json({message: err})
         }else{
-            res.redirect("/login");
+            res.status(200).json({message: "OK"});
         }
     });
 });
