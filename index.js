@@ -21,7 +21,7 @@ app.set("view engine","ejs");
 
 const port = 6060;
 app.listen(port,() =>{
-    console.log(`now listening to port http://localhost:${port}/login/ http://localhost:${port}/register/ http://localhost:${port}/test/`)
+    console.log(`now listening to port http://localhost:${port}/login/ http://localhost:${port}/register/ http://localhost:${port}/test/page1`)
 })
 
 const register_rtr =require('./routers/register');
