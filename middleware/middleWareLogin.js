@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 const jwtSecret =require("../gen_params").jwtSecret;
 
 
-const { RateLimiterMemory } = require("rate-limiter-flexible"); //brute force protection
+const { RateLimiterMemory } = require("rate-limiter-flexible");
 const opts = {
     points: 6, // 5 errors
     duration: 3*60, // Per 3 minutes
@@ -21,14 +21,10 @@ async function check_login(req,res,next){
 
     await rateLimiter.consume(req.connection.remoteAddress, 1)
         .then((rateLimiterRes) => {
-            // 1 points consumed
             points=rateLimiterRes.remainingPoints;
-            // console.log("point taken ",points," to go");
         })
         .catch((rateLimiterRes) => {
-            // Not enough points to consume
             points=0;
-            // console.log("no points left");
         });
     if(points > 0) {
         await CheckUser(req, res);
@@ -40,6 +36,7 @@ async function check_login(req,res,next){
     }
     next();
 }
+
 async function CheckUser(req,res){
     let uname = req.body.userName;
     let password = EncWithSalt(req.body.password);
@@ -47,6 +44,7 @@ async function CheckUser(req,res){
     res.loggedEn=false;
 
     let Query = `SELECT * FROM \`users\` WHERE userName='${uname}' AND pass='${password}' `;
+    console.log(Query);
 
     const promisePool = db_pool.promise();
     let rows=[];
@@ -62,19 +60,18 @@ async function CheckUser(req,res){
 }
 
 function SetLoginToken(req,res){
-    // console.log("SetLoginToken",user);
-    // console.log(jwtSecret);
+    console.log(jwtSecret);
     const maxAge = 3 * 60 * 60;
     res.token = jwt.sign(
         {id: req.user.id, name: req.user.name,},
         jwtSecret,
         {
-            expiresIn: maxAge, // 3hrs in sec
+            expiresIn: maxAge,
         }
     );
     res.cookie("jwt", res.token, {
         httpOnly: true,
-        maxAge: maxAge * 1000, // 3hrs in ms
+        maxAge: maxAge * 1000,
     });
 
 }
